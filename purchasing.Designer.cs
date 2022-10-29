@@ -32,6 +32,7 @@ namespace KM
             this.btn_upload = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.btn_save = new System.Windows.Forms.Button();
             this.textBox5 = new System.Windows.Forms.TextBox();
             this.textBox4 = new System.Windows.Forms.TextBox();
@@ -51,10 +52,9 @@ namespace KM
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btn_createnewsupplier = new System.Windows.Forms.Button();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -112,6 +112,18 @@ namespace KM
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Purchase Details";
             this.tabPage1.UseVisualStyleBackColor = true;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Items.AddRange(new object[] {
+            "paid",
+            "unpaid"});
+            this.comboBox1.Location = new System.Drawing.Point(229, 144);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(200, 33);
+            this.comboBox1.TabIndex = 22;
             // 
             // btn_save
             // 
@@ -298,13 +310,21 @@ namespace KM
             this.label1.TabIndex = 1;
             this.label1.Text = "Supplier Name";
             // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.DarkGray;
+            this.panel1.Location = new System.Drawing.Point(229, 382);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(621, 158);
+            this.panel1.TabIndex = 23;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.btn_createnewsupplier);
-            this.tabPage2.Location = new System.Drawing.Point(4, 25);
+            this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(796, 485);
+            this.tabPage2.Size = new System.Drawing.Size(1127, 690);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Suppliers Dashboard";
             this.tabPage2.UseVisualStyleBackColor = true;
@@ -318,26 +338,6 @@ namespace KM
             this.btn_createnewsupplier.Text = "Create New Supplier";
             this.btn_createnewsupplier.UseVisualStyleBackColor = true;
             // 
-            // comboBox1
-            // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "paid",
-            "unpaid"});
-            this.comboBox1.Location = new System.Drawing.Point(229, 144);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(200, 33);
-            this.comboBox1.TabIndex = 22;
-            // 
-            // panel1
-            // 
-            this.panel1.BackColor = System.Drawing.Color.DarkGray;
-            this.panel1.Location = new System.Drawing.Point(229, 382);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(621, 158);
-            this.panel1.TabIndex = 23;
-            // 
             // purchasing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -346,6 +346,7 @@ namespace KM
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "purchasing";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "purchasing";
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);

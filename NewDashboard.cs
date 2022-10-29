@@ -16,6 +16,7 @@ namespace KM
         {
             InitializeComponent();
             lblHeaderTitle.Text = "Dashboard";
+            loadForm(new Dashboard_Initial());
         }
 
         private void MainPanel_Paint(object sender, PaintEventArgs e)
@@ -68,6 +69,12 @@ namespace KM
             {
                 Application.Exit();
             }
+        }
+
+        private void btnHome_Click(object sender, EventArgs e)
+        {
+            lblHeaderTitle.Text = "HOME PAGE";
+            loadForm(new Dashboard_Initial());
         }
     }
 }
