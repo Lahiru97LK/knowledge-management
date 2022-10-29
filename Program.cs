@@ -16,7 +16,8 @@ namespace KM
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new RegisterPage());
+            //Application.Run(new Login_Page());
+            Application.Run(new NewDashboard());
         }
     }
 }

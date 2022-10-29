@@ -52,6 +52,12 @@
     <Compile Include="DashBoard.Designer.cs">
       <DependentUpon>DashBoard.cs</DependentUpon>
     </Compile>
+    <Compile Include="EmployeeAttendance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EmployeeAttendance.Designer.cs">
+      <DependentUpon>EmployeeAttendance.cs</DependentUpon>
+    </Compile>
     <Compile Include="Invoice.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -63,6 +69,12 @@
     </Compile>
     <Compile Include="Login Page.Designer.cs">
       <DependentUpon>Login Page.cs</DependentUpon>
+    </Compile>
+    <Compile Include="NewDashboard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NewDashboard.Designer.cs">
+      <DependentUpon>NewDashboard.cs</DependentUpon>
     </Compile>
     <Compile Include="Order.cs">
       <SubType>Form</SubType>
@@ -87,11 +99,17 @@
     <EmbeddedResource Include="DashBoard.resx">
       <DependentUpon>DashBoard.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EmployeeAttendance.resx">
+      <DependentUpon>EmployeeAttendance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Invoice.resx">
       <DependentUpon>Invoice.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Login Page.resx">
       <DependentUpon>Login Page.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NewDashboard.resx">
+      <DependentUpon>NewDashboard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Order.resx">
       <DependentUpon>Order.cs</DependentUpon>
@@ -110,6 +128,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -123,6 +142,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\images\logo.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="src\images\dashboard logo.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -31,5 +31,12 @@ namespace KM
         {
 
         }
+
+        private void btn_invoice_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Invoice objInvoice = new Invoice();
+            objInvoice.Show();
+        }
     }
 }
