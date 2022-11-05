@@ -31,3 +31,4 @@ F:\KM\GIT\knowledge-management\obj\Debug\KM.pdb
 F:\KM\GIT\knowledge-management\obj\Debug\KM.NewDashboard.resources
 F:\KM\GIT\knowledge-management\obj\Debug\KM.EmployeeAttendance.resources
 F:\KM\GIT\knowledge-management\obj\Debug\KM.Dashboard_Initial.resources
+F:\KM\GIT\knowledge-management\obj\Debug\KM.test.resources

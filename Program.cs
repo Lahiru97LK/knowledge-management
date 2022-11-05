@@ -18,6 +18,7 @@ namespace KM
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new Login_Page());
             Application.Run(new NewDashboard());
+            //Application.Run(new EmployeeAttendance());
         }
     }
 }

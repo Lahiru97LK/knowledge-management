@@ -36,19 +36,17 @@ namespace KM
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.btnMark = new System.Windows.Forms.Button();
-            this.txtEmployeeId = new System.Windows.Forms.TextBox();
+            this.txtbEmployeeId = new System.Windows.Forms.TextBox();
             this.txtbEmployeeName = new System.Windows.Forms.TextBox();
-            this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.txtbTotalWorkingHours = new System.Windows.Forms.TextBox();
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.btnRefresh = new System.Windows.Forms.Button();
-            this.dtpEndTime = new System.Windows.Forms.DateTimePicker();
+            this.dateTimePickerDate = new System.Windows.Forms.DateTimePicker();
             this.dtpStartTime = new System.Windows.Forms.DateTimePicker();
-            this.numericUpDown1 = new System.Windows.Forms.NumericUpDown();
-            this.numericUpDown2 = new System.Windows.Forms.NumericUpDown();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).BeginInit();
+            this.dtpEndTime = new System.Windows.Forms.DateTimePicker();
+            this.txtbTotalWorkingHours = new System.Windows.Forms.TextBox();
+            this.dgvEmployeeAttendance = new System.Windows.Forms.DataGridView();
+            this.btnRefresh = new System.Windows.Forms.Button();
+            this.btnCalculate = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeeAttendance)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -105,7 +103,7 @@ namespace KM
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(74, 287);
+            this.label6.Location = new System.Drawing.Point(74, 281);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(182, 25);
             this.label6.TabIndex = 5;
@@ -113,8 +111,8 @@ namespace KM
             // 
             // btnMark
             // 
-            this.btnMark.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMark.Location = new System.Drawing.Point(843, 272);
+            this.btnMark.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMark.Location = new System.Drawing.Point(871, 272);
             this.btnMark.Name = "btnMark";
             this.btnMark.Size = new System.Drawing.Size(96, 48);
             this.btnMark.TabIndex = 6;
@@ -122,110 +120,142 @@ namespace KM
             this.btnMark.UseVisualStyleBackColor = true;
             this.btnMark.Click += new System.EventHandler(this.btnMark_Click);
             // 
-            // txtEmployeeId
+            // txtbEmployeeId
             // 
-            this.txtEmployeeId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmployeeId.Location = new System.Drawing.Point(314, 57);
-            this.txtEmployeeId.Name = "txtEmployeeId";
-            this.txtEmployeeId.Size = new System.Drawing.Size(392, 30);
-            this.txtEmployeeId.TabIndex = 7;
-            this.txtEmployeeId.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtEmployeeId_KeyUp);
+            this.txtbEmployeeId.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtbEmployeeId.Location = new System.Drawing.Point(314, 57);
+            this.txtbEmployeeId.Name = "txtbEmployeeId";
+            this.txtbEmployeeId.Size = new System.Drawing.Size(392, 30);
+            this.txtbEmployeeId.TabIndex = 7;
+            this.txtbEmployeeId.TextChanged += new System.EventHandler(this.txtbEmployeeId_TextChanged);
+            this.txtbEmployeeId.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtbEmployeeId_KeyUp);
             // 
             // txtbEmployeeName
             // 
-            this.txtbEmployeeName.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtbEmployeeName.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.txtbEmployeeName.Enabled = false;
             this.txtbEmployeeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtbEmployeeName.Location = new System.Drawing.Point(314, 102);
             this.txtbEmployeeName.Name = "txtbEmployeeName";
             this.txtbEmployeeName.Size = new System.Drawing.Size(392, 30);
             this.txtbEmployeeName.TabIndex = 8;
+            this.txtbEmployeeName.TextChanged += new System.EventHandler(this.txtbEmployeeName_TextChanged);
             // 
-            // dateTimePicker1
+            // dateTimePickerDate
             // 
-            this.dateTimePicker1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dateTimePicker1.Location = new System.Drawing.Point(314, 148);
-            this.dateTimePicker1.MaxDate = new System.DateTime(2030, 12, 31, 0, 0, 0, 0);
-            this.dateTimePicker1.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
-            this.dateTimePicker1.Name = "dateTimePicker1";
-            this.dateTimePicker1.Size = new System.Drawing.Size(392, 30);
-            this.dateTimePicker1.TabIndex = 9;
+            this.dateTimePickerDate.CustomFormat = "";
+            this.dateTimePickerDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dateTimePickerDate.Format = System.Windows.Forms.DateTimePickerFormat.Short;
+            this.dateTimePickerDate.Location = new System.Drawing.Point(314, 148);
+            this.dateTimePickerDate.MaxDate = new System.DateTime(2030, 12, 31, 0, 0, 0, 0);
+            this.dateTimePickerDate.MinDate = new System.DateTime(2000, 1, 1, 0, 0, 0, 0);
+            this.dateTimePickerDate.Name = "dateTimePickerDate";
+            this.dateTimePickerDate.Size = new System.Drawing.Size(392, 30);
+            this.dateTimePickerDate.TabIndex = 9;
+            // 
+            // dtpStartTime
+            // 
+            this.dtpStartTime.CustomFormat = "hh:mm tt";
+            this.dtpStartTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpStartTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpStartTime.Location = new System.Drawing.Point(314, 193);
+            this.dtpStartTime.Name = "dtpStartTime";
+            this.dtpStartTime.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.dtpStartTime.ShowUpDown = true;
+            this.dtpStartTime.Size = new System.Drawing.Size(157, 30);
+            this.dtpStartTime.TabIndex = 10;
+            this.dtpStartTime.Value = new System.DateTime(2022, 10, 30, 8, 0, 0, 0);
+            // 
+            // dtpEndTime
+            // 
+            this.dtpEndTime.CustomFormat = "hh:mm tt";
+            this.dtpEndTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpEndTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpEndTime.Location = new System.Drawing.Point(314, 239);
+            this.dtpEndTime.Name = "dtpEndTime";
+            this.dtpEndTime.ShowUpDown = true;
+            this.dtpEndTime.Size = new System.Drawing.Size(157, 30);
+            this.dtpEndTime.TabIndex = 11;
+            this.dtpEndTime.Value = new System.DateTime(2022, 10, 30, 17, 0, 0, 0);
+            this.dtpEndTime.DropDown += new System.EventHandler(this.dtpEndTime_DropDown);
+            this.dtpEndTime.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.dtpEndTime_KeyPress);
+            this.dtpEndTime.KeyUp += new System.Windows.Forms.KeyEventHandler(this.dtpEndTime_KeyUp);
             // 
             // txtbTotalWorkingHours
             // 
-            this.txtbTotalWorkingHours.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.txtbTotalWorkingHours.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.txtbTotalWorkingHours.Enabled = false;
             this.txtbTotalWorkingHours.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtbTotalWorkingHours.Location = new System.Drawing.Point(314, 282);
+            this.txtbTotalWorkingHours.Location = new System.Drawing.Point(314, 284);
             this.txtbTotalWorkingHours.Name = "txtbTotalWorkingHours";
-            this.txtbTotalWorkingHours.Size = new System.Drawing.Size(392, 30);
+            this.txtbTotalWorkingHours.Size = new System.Drawing.Size(157, 30);
             this.txtbTotalWorkingHours.TabIndex = 12;
             // 
-            // dataGridView1
+            // dgvEmployeeAttendance
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(314, 353);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.RowHeadersWidth = 51;
-            this.dataGridView1.RowTemplate.Height = 24;
-            this.dataGridView1.Size = new System.Drawing.Size(772, 372);
-            this.dataGridView1.TabIndex = 13;
+            this.dgvEmployeeAttendance.AllowUserToAddRows = false;
+            this.dgvEmployeeAttendance.AllowUserToDeleteRows = false;
+            this.dgvEmployeeAttendance.BackgroundColor = System.Drawing.SystemColors.ActiveCaption;
+            this.dgvEmployeeAttendance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEmployeeAttendance.Location = new System.Drawing.Point(314, 353);
+            this.dgvEmployeeAttendance.Name = "dgvEmployeeAttendance";
+            this.dgvEmployeeAttendance.ReadOnly = true;
+            this.dgvEmployeeAttendance.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Sunken;
+            this.dgvEmployeeAttendance.RowHeadersVisible = false;
+            this.dgvEmployeeAttendance.RowHeadersWidth = 51;
+            this.dgvEmployeeAttendance.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dgvEmployeeAttendance.RowTemplate.Height = 24;
+            this.dgvEmployeeAttendance.Size = new System.Drawing.Size(772, 374);
+            this.dgvEmployeeAttendance.TabIndex = 13;
+            this.dgvEmployeeAttendance.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployeeAttendance_CellClick);
             // 
             // btnRefresh
             // 
-            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRefresh.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnRefresh.Location = new System.Drawing.Point(973, 272);
             this.btnRefresh.Name = "btnRefresh";
             this.btnRefresh.Size = new System.Drawing.Size(113, 48);
             this.btnRefresh.TabIndex = 14;
             this.btnRefresh.Text = "REFRESH";
             this.btnRefresh.UseVisualStyleBackColor = true;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
-            // dtpEndTime
+            // btnCalculate
             // 
-            this.dtpEndTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpEndTime.Location = new System.Drawing.Point(882, 103);
-            this.dtpEndTime.Name = "dtpEndTime";
-            this.dtpEndTime.Size = new System.Drawing.Size(95, 30);
-            this.dtpEndTime.TabIndex = 11;
+            this.btnCalculate.Location = new System.Drawing.Point(492, 284);
+            this.btnCalculate.Name = "btnCalculate";
+            this.btnCalculate.Size = new System.Drawing.Size(84, 32);
+            this.btnCalculate.TabIndex = 15;
+            this.btnCalculate.Text = "Calculate";
+            this.btnCalculate.UseVisualStyleBackColor = true;
+            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
-            // dtpStartTime
+            // btnDelete
             // 
-            this.dtpStartTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpStartTime.Location = new System.Drawing.Point(882, 57);
-            this.dtpStartTime.Name = "dtpStartTime";
-            this.dtpStartTime.Size = new System.Drawing.Size(95, 30);
-            this.dtpStartTime.TabIndex = 10;
-            // 
-            // numericUpDown1
-            // 
-            this.numericUpDown1.Location = new System.Drawing.Point(314, 196);
-            this.numericUpDown1.Name = "numericUpDown1";
-            this.numericUpDown1.Size = new System.Drawing.Size(86, 22);
-            this.numericUpDown1.TabIndex = 15;
-            // 
-            // numericUpDown2
-            // 
-            this.numericUpDown2.Location = new System.Drawing.Point(314, 242);
-            this.numericUpDown2.Name = "numericUpDown2";
-            this.numericUpDown2.Size = new System.Drawing.Size(86, 22);
-            this.numericUpDown2.TabIndex = 16;
+            this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDelete.Location = new System.Drawing.Point(780, 272);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(85, 48);
+            this.btnDelete.TabIndex = 16;
+            this.btnDelete.Text = "DELETE";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
             // EmployeeAttendance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1164, 756);
-            this.Controls.Add(this.numericUpDown2);
-            this.Controls.Add(this.numericUpDown1);
+            this.Controls.Add(this.btnDelete);
+            this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.btnRefresh);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.dgvEmployeeAttendance);
             this.Controls.Add(this.txtbTotalWorkingHours);
             this.Controls.Add(this.dtpEndTime);
             this.Controls.Add(this.dtpStartTime);
-            this.Controls.Add(this.dateTimePicker1);
+            this.Controls.Add(this.dateTimePickerDate);
             this.Controls.Add(this.txtbEmployeeName);
-            this.Controls.Add(this.txtEmployeeId);
+            this.Controls.Add(this.txtbEmployeeId);
             this.Controls.Add(this.btnMark);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
@@ -236,9 +266,8 @@ namespace KM
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "EmployeeAttendance";
             this.Text = "EmployeeAttendance";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDown2)).EndInit();
+            this.Load += new System.EventHandler(this.EmployeeAttendance_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeeAttendance)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -253,15 +282,15 @@ namespace KM
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnMark;
-        private System.Windows.Forms.TextBox txtEmployeeId;
+        private System.Windows.Forms.TextBox txtbEmployeeId;
         private System.Windows.Forms.TextBox txtbEmployeeName;
-        private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TextBox txtbTotalWorkingHours;
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.Button btnRefresh;
-        private System.Windows.Forms.DateTimePicker dtpEndTime;
+        private System.Windows.Forms.DateTimePicker dateTimePickerDate;
         private System.Windows.Forms.DateTimePicker dtpStartTime;
-        private System.Windows.Forms.NumericUpDown numericUpDown1;
-        private System.Windows.Forms.NumericUpDown numericUpDown2;
+        private System.Windows.Forms.DateTimePicker dtpEndTime;
+        private System.Windows.Forms.TextBox txtbTotalWorkingHours;
+        private System.Windows.Forms.DataGridView dgvEmployeeAttendance;
+        private System.Windows.Forms.Button btnRefresh;
+        private System.Windows.Forms.Button btnCalculate;
+        private System.Windows.Forms.Button btnDelete;
     }
 }
