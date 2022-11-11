@@ -46,6 +46,8 @@ namespace KM
             this.btnRefresh = new System.Windows.Forms.Button();
             this.btnCalculate = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
+            this.btnSearch = new System.Windows.Forms.Button();
+            this.btnUpdate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeeAttendance)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,6 +130,7 @@ namespace KM
             this.txtbEmployeeId.Size = new System.Drawing.Size(392, 30);
             this.txtbEmployeeId.TabIndex = 7;
             this.txtbEmployeeId.TextChanged += new System.EventHandler(this.txtbEmployeeId_TextChanged);
+            this.txtbEmployeeId.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtbEmployeeId_KeyPress);
             this.txtbEmployeeId.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtbEmployeeId_KeyUp);
             // 
             // txtbEmployeeName
@@ -241,11 +244,33 @@ namespace KM
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
+            // btnSearch
+            // 
+            this.btnSearch.Location = new System.Drawing.Point(780, 54);
+            this.btnSearch.Name = "btnSearch";
+            this.btnSearch.Size = new System.Drawing.Size(85, 33);
+            this.btnSearch.TabIndex = 17;
+            this.btnSearch.Text = "SEARCH";
+            this.btnSearch.UseVisualStyleBackColor = true;
+            this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
+            // 
+            // btnUpdate
+            // 
+            this.btnUpdate.Location = new System.Drawing.Point(780, 99);
+            this.btnUpdate.Name = "btnUpdate";
+            this.btnUpdate.Size = new System.Drawing.Size(85, 33);
+            this.btnUpdate.TabIndex = 18;
+            this.btnUpdate.Text = "UPDATE";
+            this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
+            // 
             // EmployeeAttendance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1164, 756);
+            this.Controls.Add(this.btnUpdate);
+            this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.btnDelete);
             this.Controls.Add(this.btnCalculate);
             this.Controls.Add(this.btnRefresh);
@@ -292,5 +317,7 @@ namespace KM
         private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnCalculate;
         private System.Windows.Forms.Button btnDelete;
+        private System.Windows.Forms.Button btnSearch;
+        private System.Windows.Forms.Button btnUpdate;
     }
 }

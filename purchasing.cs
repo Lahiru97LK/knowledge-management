@@ -20,6 +20,9 @@ namespace KM
         {
             InitializeComponent();
         }
+        SqlConnection con = new SqlConnection("Data Source=UIS96;Initial Catalog=DMS;Integrated Security=True;MultipleActiveResultSets=true");
+        SqlDataAdapter sda;
+        DataTable dta;
         struct FtpSetting
         {
             public string Supplier_Name { get; set; }
@@ -45,31 +48,112 @@ namespace KM
 
         private void btn_upload_Click(object sender, EventArgs e)
         {
-            //using(OpenFileDialog ofd = new OpenFileDialog() { Multiselect = false, ValidateNames = true, Filter ="All files|*.*"})
-            //{
-            //    if(ofd.ShowDialog()==DialogResult.OK)
-            //    {
-            //        FileInfo fi = new FileInfo(ofd.FileName);
-            //        _inputParameter.Supplier_Name = comboBox_suppliername.Text;
-            //        _inputParameter.Purchasing_Date = dateTimePicker1.Text;
-            //        _inputParameter.Payment_Status = comboBox_PaymentStatus.Text;
-            //        _inputParameter.Paid_Amount = textBox_PaidAmount.Text;
-            //        _inputParameter.Total_Amount = textBox_TotalAmount.Text;
-            //        _inputParameter.Balance_Payment = textBox_BalancePayment.Text;
-            //        _inputParameter.Payment_Method = comboBox_PaymentMethod.Text;
-            //        _inputParameter.Other = textBox_Other.Text;
-            //        _inputParameter.Cheque_Number = textBox_ChequeNumber.Text;
-            //        _inputParameter.File_Name = fi.Name;
-            //        _inputParameter.Full_Name = fi.FullName;
-            //    }
-            //}
+
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.ShowDialog();
             textBox_filePath.Text = dlg.FileName;
 
         }
+
+        private void comboBox_suppliername_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+        private void ClearControls()
+        {
+            comboBox_suppliername.Text = "";
+            dateTimePicker1.Text = "";
+            textBox_total.Text = "";
+            textBox_payment.Text = "";
+            //textBox_Balance.Text = "";
+            //(text_balance.Text).ToString()= "";  
+
+        }
+
+        private void textBox_total_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_payment_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_Balance_TextChanged(object sender, EventArgs e)
+        {
+            textBox_Balance.Text = (Double.Parse(textBox_total.Text) - Double.Parse(textBox_payment.Text)).ToString();
+        }
+
+        private void btn_save_Click(object sender, EventArgs e)
+        {
+            SqlCommand cmd = new SqlCommand("sp_insert", con);
+            cmd.CommandType = CommandType.StoredProcedure;
+            //cmd.Parameters.AddWithValue("@purchaseID", textBox1.Text);
+            cmd.Parameters.AddWithValue("@supplierName", comboBox_suppliername.Text);
+            cmd.Parameters.AddWithValue("@date", dateTimePicker1.Value);
+            cmd.Parameters.AddWithValue("@total", textBox_total.Text);
+            cmd.Parameters.AddWithValue("@payment", textBox_payment.Text);
+            cmd.Parameters.AddWithValue("@balance", textBox_Balance.Text);
+            con.Open();
+            int i = cmd.ExecuteNonQuery();
+
+            con.Close();
+
+            if (i != 0)
+            {
+                MessageBox.Show(i + "Data Saved");
+            }
+            ShowTable();
+            ClearControls();
+            //text_balance.Clear();
+        }
+
+        public static void main(string[] args)
+        {
+            Application.Run(new Form());
+        }
+
+        public void ShowTable()
+        {
+            using (SqlCommand cmd = new SqlCommand("SELECT * FROM Billing", con))
+            {
+                cmd.CommandType = CommandType.Text;
+                using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
+                {
+                    using (DataTable dt = new DataTable())
+                    {
+                        sda.Fill(dt);
+                        dataGridView1.DataSource = dt;
+                    }
+                }
+            }
+        }
+
+        private void btn_search_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox_search_TextChanged_1(object sender, EventArgs e)
+        {
+            con.Open();
+            sda = new SqlDataAdapter("select * from Billing where Supplier_Name like '" + textBox_search.Text + "%'", con);
+            dta = new DataTable();
+            sda.Fill(dta);
+            dataGridView1.DataSource = dta;
+            con.Close();
+            
+        }
+
+        private void tabPage1_Click(object sender, EventArgs e)
+        {
+
+        }
     }
-}
+    }
+
+
 
         //private void comboBox_PaymentMethod_SelectedIndexChanged(object sender, EventArgs e)
         //{

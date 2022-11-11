@@ -19,6 +19,7 @@ namespace KM
             //Application.Run(new Login_Page());
             Application.Run(new NewDashboard());
             //Application.Run(new EmployeeAttendance());
+            //Application.Run(new purchasing());
         }
     }
 }

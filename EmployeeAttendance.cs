@@ -218,5 +218,80 @@ namespace KM
                 MessageBox.Show("Please select a record to delete!");
             }
         }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            searchEmployeeByID();
+        }
+
+        private void searchEmployeeByID()
+        {
+          try
+            {
+                int PK_ID = Convert.ToInt32(txtbEmployeeId.Text.ToString().Trim());
+
+                con.Open();
+                SqlCommand cmdSearchEmpName = new SqlCommand("EXEC selEMPbyEMP_ID '" + @PK_ID + "'", con);
+                cmdSearchEmpName.ExecuteNonQuery();
+                SqlDataAdapter sd = new SqlDataAdapter(cmdSearchEmpName);
+                
+
+                SqlDataReader reader = cmdSearchEmpName.ExecuteReader();
+                con.Close();
+                DataTable dt = new DataTable();
+                sd.Fill(dt);
+
+                if (dt.Rows.Count > 0)
+                {
+                    MessageBox.Show("Search successfully!");
+                    dgvEmployeeAttendance.DataSource = dt;
+                }
+                else
+                {
+                    MessageBox.Show("Record(s) not found");
+                }
+            }
+            catch (Exception)
+            {
+                MessageBox.Show("Please enter a id to search!");
+            }
+        }
+
+        private void txtbEmployeeId_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                empDetailsUpdate();
+            } catch(Exception)
+            {
+                throw;
+            }
+            
+        }
+
+        private void empDetailsUpdate()
+        {
+            //int @PK_ID = Convert.ToInt32(txtbEmployeeId.Text.ToString().Trim());
+            int @EMPNO = Convert.ToInt32(txtbEmployeeId.Text.ToString().Trim());
+            string @EMPNAME = txtbEmployeeName.Text.ToString().Trim();
+            string @DATE = dateTimePickerDate.Text;
+            string @STARTTIME = dtpStartTime.Text;
+            string @ENDTIME = dtpEndTime.Text;
+            string @NOOFWORKING_HOURS = txtbTotalWorkingHours.Text.ToString().Trim();
+
+
+            con.Open();
+            SqlCommand cmdUPDATE = new SqlCommand("EXEC updEmployeeAttendance '"+ @PK_ID + "', '"+ @EMPNO + "', '"+ @EMPNAME + "', '"+ @DATE + "', '"+ @STARTTIME + "', '"+ @ENDTIME + "', '"+ @NOOFWORKING_HOURS + "'", con);
+            cmdUPDATE.ExecuteNonQuery();
+            MessageBox.Show("Successfully updated");
+            InitialValues();
+            con.Close();
+            LoadGrid();
+        }
     }
 }

@@ -32,30 +32,28 @@ namespace KM
             this.btn_upload = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.textBox_search = new System.Windows.Forms.TextBox();
+            this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.textBox_filePath = new System.Windows.Forms.TextBox();
             this.comboBox_PaymentStatus = new System.Windows.Forms.ComboBox();
             this.btn_save = new System.Windows.Forms.Button();
-            this.textBox_Other = new System.Windows.Forms.TextBox();
-            this.textBox_ChequeNumber = new System.Windows.Forms.TextBox();
-            this.label8 = new System.Windows.Forms.Label();
-            this.textBox_BalancePayment = new System.Windows.Forms.TextBox();
-            this.textBox_TotalAmount = new System.Windows.Forms.TextBox();
-            this.textBox_PaidAmount = new System.Windows.Forms.TextBox();
+            this.textBox_Balance = new System.Windows.Forms.TextBox();
+            this.textBox_payment = new System.Windows.Forms.TextBox();
+            this.textBox_total = new System.Windows.Forms.TextBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.comboBox_suppliername = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.btn_createnewsupplier = new System.Windows.Forms.Button();
-            this.comboBox_PaymentMethod = new System.Windows.Forms.ComboBox();
-            this.lblother = new System.Windows.Forms.Label();
-            this.textBox_filePath = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,22 +81,19 @@ namespace KM
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.label5);
+            this.tabPage1.Controls.Add(this.textBox_search);
+            this.tabPage1.Controls.Add(this.dataGridView1);
             this.tabPage1.Controls.Add(this.textBox_filePath);
-            this.tabPage1.Controls.Add(this.lblother);
-            this.tabPage1.Controls.Add(this.comboBox_PaymentMethod);
             this.tabPage1.Controls.Add(this.comboBox_PaymentStatus);
             this.tabPage1.Controls.Add(this.btn_save);
-            this.tabPage1.Controls.Add(this.textBox_Other);
-            this.tabPage1.Controls.Add(this.textBox_ChequeNumber);
-            this.tabPage1.Controls.Add(this.label8);
-            this.tabPage1.Controls.Add(this.textBox_BalancePayment);
-            this.tabPage1.Controls.Add(this.textBox_TotalAmount);
-            this.tabPage1.Controls.Add(this.textBox_PaidAmount);
+            this.tabPage1.Controls.Add(this.textBox_Balance);
+            this.tabPage1.Controls.Add(this.textBox_payment);
+            this.tabPage1.Controls.Add(this.textBox_total);
             this.tabPage1.Controls.Add(this.dateTimePicker1);
             this.tabPage1.Controls.Add(this.comboBox_suppliername);
             this.tabPage1.Controls.Add(this.label7);
             this.tabPage1.Controls.Add(this.label6);
-            this.tabPage1.Controls.Add(this.label5);
             this.tabPage1.Controls.Add(this.label4);
             this.tabPage1.Controls.Add(this.label3);
             this.tabPage1.Controls.Add(this.label2);
@@ -111,6 +106,32 @@ namespace KM
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Purchase Details";
             this.tabPage1.UseVisualStyleBackColor = true;
+            this.tabPage1.Click += new System.EventHandler(this.tabPage1_Click);
+            // 
+            // textBox_search
+            // 
+            this.textBox_search.Location = new System.Drawing.Point(714, 191);
+            this.textBox_search.Name = "textBox_search";
+            this.textBox_search.Size = new System.Drawing.Size(100, 30);
+            this.textBox_search.TabIndex = 31;
+            this.textBox_search.TextChanged += new System.EventHandler(this.textBox_search_TextChanged_1);
+            // 
+            // dataGridView1
+            // 
+            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView1.Location = new System.Drawing.Point(582, 296);
+            this.dataGridView1.Name = "dataGridView1";
+            this.dataGridView1.RowHeadersWidth = 51;
+            this.dataGridView1.RowTemplate.Height = 24;
+            this.dataGridView1.Size = new System.Drawing.Size(499, 150);
+            this.dataGridView1.TabIndex = 30;
+            // 
+            // textBox_filePath
+            // 
+            this.textBox_filePath.Location = new System.Drawing.Point(857, 52);
+            this.textBox_filePath.Name = "textBox_filePath";
+            this.textBox_filePath.Size = new System.Drawing.Size(287, 30);
+            this.textBox_filePath.TabIndex = 29;
             // 
             // comboBox_PaymentStatus
             // 
@@ -133,58 +154,34 @@ namespace KM
             this.btn_save.TabIndex = 21;
             this.btn_save.Text = "Save";
             this.btn_save.UseVisualStyleBackColor = true;
-            //this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
-            // textBox_Other
+            // textBox_Balance
             // 
-            this.textBox_Other.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_Other.Location = new System.Drawing.Point(941, 382);
-            this.textBox_Other.Name = "textBox_Other";
-            this.textBox_Other.Size = new System.Drawing.Size(181, 30);
-            this.textBox_Other.TabIndex = 20;
+            this.textBox_Balance.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_Balance.Location = new System.Drawing.Point(229, 291);
+            this.textBox_Balance.Name = "textBox_Balance";
+            this.textBox_Balance.Size = new System.Drawing.Size(200, 30);
+            this.textBox_Balance.TabIndex = 14;
+            this.textBox_Balance.TextChanged += new System.EventHandler(this.textBox_Balance_TextChanged);
             // 
-            // textBox_ChequeNumber
+            // textBox_payment
             // 
-            this.textBox_ChequeNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_ChequeNumber.Location = new System.Drawing.Point(634, 382);
-            this.textBox_ChequeNumber.Name = "textBox_ChequeNumber";
-            this.textBox_ChequeNumber.Size = new System.Drawing.Size(136, 30);
-            this.textBox_ChequeNumber.TabIndex = 19;
-            this.textBox_ChequeNumber.TextChanged += new System.EventHandler(this.textBox4_TextChanged);
+            this.textBox_payment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_payment.Location = new System.Drawing.Point(229, 243);
+            this.textBox_payment.Name = "textBox_payment";
+            this.textBox_payment.Size = new System.Drawing.Size(200, 30);
+            this.textBox_payment.TabIndex = 13;
+            this.textBox_payment.TextChanged += new System.EventHandler(this.textBox_payment_TextChanged);
             // 
-            // label8
+            // textBox_total
             // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(460, 382);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(156, 25);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Cheque Number";
-            // 
-            // textBox_BalancePayment
-            // 
-            this.textBox_BalancePayment.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_BalancePayment.Location = new System.Drawing.Point(229, 291);
-            this.textBox_BalancePayment.Name = "textBox_BalancePayment";
-            this.textBox_BalancePayment.Size = new System.Drawing.Size(200, 30);
-            this.textBox_BalancePayment.TabIndex = 14;
-            // 
-            // textBox_TotalAmount
-            // 
-            this.textBox_TotalAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_TotalAmount.Location = new System.Drawing.Point(229, 243);
-            this.textBox_TotalAmount.Name = "textBox_TotalAmount";
-            this.textBox_TotalAmount.Size = new System.Drawing.Size(200, 30);
-            this.textBox_TotalAmount.TabIndex = 13;
-            // 
-            // textBox_PaidAmount
-            // 
-            this.textBox_PaidAmount.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox_PaidAmount.Location = new System.Drawing.Point(229, 186);
-            this.textBox_PaidAmount.Name = "textBox_PaidAmount";
-            this.textBox_PaidAmount.Size = new System.Drawing.Size(200, 30);
-            this.textBox_PaidAmount.TabIndex = 12;
+            this.textBox_total.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox_total.Location = new System.Drawing.Point(229, 186);
+            this.textBox_total.Name = "textBox_total";
+            this.textBox_total.Size = new System.Drawing.Size(200, 30);
+            this.textBox_total.TabIndex = 12;
+            this.textBox_total.TextChanged += new System.EventHandler(this.textBox_total_TextChanged);
             // 
             // dateTimePicker1
             // 
@@ -207,6 +204,7 @@ namespace KM
             this.comboBox_suppliername.Name = "comboBox_suppliername";
             this.comboBox_suppliername.Size = new System.Drawing.Size(200, 33);
             this.comboBox_suppliername.TabIndex = 8;
+            this.comboBox_suppliername.SelectedIndexChanged += new System.EventHandler(this.comboBox_suppliername_SelectedIndexChanged);
             // 
             // label7
             // 
@@ -222,21 +220,11 @@ namespace KM
             // 
             this.label6.AutoSize = true;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(72, 191);
+            this.label6.Location = new System.Drawing.Point(72, 248);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(124, 25);
             this.label6.TabIndex = 6;
             this.label6.Text = "Paid Amount";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(36, 382);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(160, 25);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "Payment Method";
             // 
             // label4
             // 
@@ -252,7 +240,7 @@ namespace KM
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(67, 248);
+            this.label3.Location = new System.Drawing.Point(67, 191);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(129, 25);
             this.label3.TabIndex = 3;
@@ -298,36 +286,14 @@ namespace KM
             this.btn_createnewsupplier.Text = "Create New Supplier";
             this.btn_createnewsupplier.UseVisualStyleBackColor = true;
             // 
-            // comboBox_PaymentMethod
+            // label5
             // 
-            this.comboBox_PaymentMethod.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox_PaymentMethod.FormattingEnabled = true;
-            this.comboBox_PaymentMethod.Items.AddRange(new object[] {
-            "Cash",
-            "Cheque",
-            "Other"});
-            this.comboBox_PaymentMethod.Location = new System.Drawing.Point(229, 374);
-            this.comboBox_PaymentMethod.Name = "comboBox_PaymentMethod";
-            this.comboBox_PaymentMethod.Size = new System.Drawing.Size(200, 33);
-            this.comboBox_PaymentMethod.TabIndex = 27;
-            //this.comboBox_PaymentMethod.SelectedIndexChanged += new System.EventHandler(this.comboBox_PaymentMethod_SelectedIndexChanged);
-            // 
-            // lblother
-            // 
-            this.lblother.AutoSize = true;
-            this.lblother.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblother.Location = new System.Drawing.Point(833, 387);
-            this.lblother.Name = "lblother";
-            this.lblother.Size = new System.Drawing.Size(61, 25);
-            this.lblother.TabIndex = 28;
-            this.lblother.Text = "Other";
-            // 
-            // textBox_filePath
-            // 
-            this.textBox_filePath.Location = new System.Drawing.Point(857, 52);
-            this.textBox_filePath.Name = "textBox_filePath";
-            this.textBox_filePath.Size = new System.Drawing.Size(287, 30);
-            this.textBox_filePath.TabIndex = 29;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(844, 194);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(237, 25);
+            this.label5.TabIndex = 32;
+            this.label5.Text = "Search By Supplier Name";
             // 
             // purchasing
             // 
@@ -342,6 +308,7 @@ namespace KM
             this.tabControl1.ResumeLayout(false);
             this.tabPage1.ResumeLayout(false);
             this.tabPage1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -353,17 +320,13 @@ namespace KM
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tabPage1;
         private System.Windows.Forms.TabPage tabPage2;
-        private System.Windows.Forms.TextBox textBox_Other;
-        private System.Windows.Forms.TextBox textBox_ChequeNumber;
-        private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.TextBox textBox_BalancePayment;
-        private System.Windows.Forms.TextBox textBox_TotalAmount;
-        private System.Windows.Forms.TextBox textBox_PaidAmount;
+        private System.Windows.Forms.TextBox textBox_Balance;
+        private System.Windows.Forms.TextBox textBox_payment;
+        private System.Windows.Forms.TextBox textBox_total;
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
         private System.Windows.Forms.ComboBox comboBox_suppliername;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
@@ -371,8 +334,9 @@ namespace KM
         private System.Windows.Forms.Button btn_save;
         private System.Windows.Forms.Button btn_createnewsupplier;
         private System.Windows.Forms.ComboBox comboBox_PaymentStatus;
-        private System.Windows.Forms.ComboBox comboBox_PaymentMethod;
-        private System.Windows.Forms.Label lblother;
         private System.Windows.Forms.TextBox textBox_filePath;
+        private System.Windows.Forms.TextBox textBox_search;
+        private System.Windows.Forms.DataGridView dataGridView1;
+        private System.Windows.Forms.Label label5;
     }
 }
