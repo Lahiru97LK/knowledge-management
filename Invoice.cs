@@ -11,16 +11,21 @@ using System.Windows.Forms;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 using System.IO;
+using iTextSharp.text.pdf.draw;
 
 namespace KM
 {
     public partial class Invoice : Form
     {
+        int INVOICE_NO = 0;
+        
         public Invoice()
         {
             InitializeComponent();
             generateInvoiceNumber();
             loadingForm();
+            loadGridToData();
+            lblInvoiceNumber.Text = "";
         }
 
         private void loadingForm()
@@ -72,17 +77,24 @@ namespace KM
 
         }
 
+        Bitmap bmp;
         private void btn_printinvoice_Click(object sender, EventArgs e)
         {
-            try
-            {
-                printInsertedDATA();
-                LoadGrid();
-            }
-            catch(Exception ex)
-            {
-                MessageBox.Show("Try again");
-            }
+            //try
+            //{
+            //    printInsertedDATA();
+            //    LoadGrid();
+            //}
+            //catch(Exception)
+            //{
+            //    MessageBox.Show("Try again");
+            //}
+
+            Graphics g = this.CreateGraphics();
+            bmp = new Bitmap(this.Size.Width, this.Size.Height, g);
+            Graphics mg = Graphics.FromImage(bmp);
+            mg.CopyFromScreen(this.Location.X, this.Location.Y, 0, 0, this.Size);
+            printPreviewDialog1.ShowDialog();
             
 
         }
@@ -128,9 +140,21 @@ namespace KM
 
             Paragraph p1 = new Paragraph("INVOICE REPORT");
             p1.Alignment = Element.ALIGN_CENTER;
+
+            DottedLineSeparator dottedline = new DottedLineSeparator();
+            Paragraph p4 = new Paragraph("");
+            p4.Add(dottedline);
             Paragraph p2 = new Paragraph("\n\nCUSTOMER NAME : " + customerName+"\nPHONE : "+phone + "\nADDRESS : " + address+ "\nEMAIL : " +mail+"\nITEM : "+item+ "\nDISTRICT : "+distric+ "\nQUANTITY : "+quantity+ "\nUNIT PRICE : "+unitPrice+ "\nTOTAL : "+total);
-            
+            Paragraph p3 = new Paragraph("  \n\nJupiter Packing Suppliers\nAlubogahawatta"
+                                            +"\nParagasthota"
+                                            +"\nHorana"
+                                            +"\nTel - 0777715233"
+                                            +"\nEmail - jupiterpacking7@gmail.com\n");
+            p3.Alignment = Element.ALIGN_RIGHT;
             doc.Add(p1);
+            doc.Add(p4);
+
+            doc.Add(p3);
             doc.Add(p2);
 
             doc.Close();
@@ -274,7 +298,7 @@ namespace KM
             }
             catch (Exception)
             {
-                dgv_Invoice.DataSource = null;
+                loadGridToData();
             }
         }
 
@@ -285,29 +309,36 @@ namespace KM
 
         private void dgv_Invoice_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            
             if (dgv_Invoice.Rows[e.RowIndex].Cells[e.ColumnIndex].Value != null)
             {
                 dgv_Invoice.CurrentRow.Selected = true;
 
-                cbCustomerName.Text = dgv_Invoice.Rows[e.RowIndex].Cells["CUSTOMER_NAME"].FormattedValue.ToString();
-                cbCustomerName.SelectedText = "lahiru";
-                tbPhone.Text = dgv_Invoice.Rows[e.RowIndex].Cells["PHONE"].FormattedValue.ToString();
-                tbAddress.Text = dgv_Invoice.Rows[e.RowIndex].Cells["ADDRESS"].FormattedValue.ToString();
-                tbEmail.Text = dgv_Invoice.Rows[e.RowIndex].Cells["EMAIL"].FormattedValue.ToString();
+                cbCustomerName.Text = dgv_Invoice.Rows[e.RowIndex].Cells["CUSTOMER_NAME"].FormattedValue.ToString().Trim();
+                tbPhone.Text = dgv_Invoice.Rows[e.RowIndex].Cells["PHONE"].FormattedValue.ToString().Trim();
+                tbAddress.Text = dgv_Invoice.Rows[e.RowIndex].Cells["ADDRESS"].FormattedValue.ToString().Trim();
+                tbEmail.Text = dgv_Invoice.Rows[e.RowIndex].Cells["EMAIL"].FormattedValue.ToString().Trim();
 
-                cbItem.SelectedItem = dgv_Invoice.Rows[e.RowIndex].Cells["ITEM"].FormattedValue.ToString();
-                cbDistrict.SelectedItem = dgv_Invoice.Rows[e.RowIndex].Cells["DISTRIC"].FormattedValue.ToString();
+                cbItem.Text = dgv_Invoice.Rows[e.RowIndex].Cells["ITEM"].FormattedValue.ToString().Trim();
+                cbDistrict.Text = dgv_Invoice.Rows[e.RowIndex].Cells["DISTRIC"].FormattedValue.ToString().Trim();
                 //nudQuantity.Value = dgv_Invoice.Rows[e.RowIndex].Cells["QUANTITY"].FormattedValue.ToString();
-                tbUnitPrice.Text = dgv_Invoice.Rows[e.RowIndex].Cells["UNIT_PRICE"].FormattedValue.ToString();
-                tbTotal.Text = dgv_Invoice.Rows[e.RowIndex].Cells["TOTAL"].FormattedValue.ToString();
+                tbUnitPrice.Text = dgv_Invoice.Rows[e.RowIndex].Cells["UNIT_PRICE"].FormattedValue.ToString().Trim();
+                tbTotal.Text = dgv_Invoice.Rows[e.RowIndex].Cells["TOTAL"].FormattedValue.ToString().Trim();
+                INVOICE_NO = Convert.ToInt32(dgv_Invoice.Rows[e.RowIndex].Cells["INVOICE_NO"].FormattedValue.ToString());
             }
         }
 
         private void btnReset_Click(object sender, EventArgs e)
         {
+            loadGridToData();
+        }
+
+        private void loadGridToData()
+        {
             con.Open();
             SqlCommand cmdSelAllInvoiceDATA = new SqlCommand("SELECT * FROM INVOICE", con);
             SqlDataAdapter sda = new SqlDataAdapter(cmdSelAllInvoiceDATA);
+            con.Close();
 
             DataTable dt = new DataTable();
             sda.Fill(dt);
@@ -318,6 +349,83 @@ namespace KM
         private void tbInvoiceNumber_KeyUp(object sender, KeyEventArgs e)
         {
             invoiceSearch();
+        }
+
+        private void tbInvoiceNumber_TextChanged(object sender, EventArgs e)
+        {
+            if (System.Text.RegularExpressions.Regex.IsMatch(tbInvoiceNumber.Text, "[^0-9]"))
+            {
+                MessageBox.Show("Please enter only numbers.");
+                tbInvoiceNumber.Text = tbInvoiceNumber.Text.Remove(tbInvoiceNumber.Text.Length - 1);
+            }
+        }
+
+        private void btn_delete_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                deleteInvoice();
+                loadGridToData();
+            }
+            catch(Exception) {
+                MessageBox.Show("Try again...");
+            }
+        }
+
+        private void deleteInvoice()
+        {
+            con.Open();
+            SqlCommand cmdDEL_Invoice = new SqlCommand("EXEC del_Invoice_by_id '"+INVOICE_NO+"'", con);
+            SqlDataAdapter sa = new SqlDataAdapter(cmdDEL_Invoice);
+            cmdDEL_Invoice.ExecuteNonQuery();
+            con.Close();
+            MessageBox.Show("1 record successfully deleted!");
+        }
+
+        private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
+        {
+            e.Graphics.DrawImage(bmp, 0, 0);
+        }
+
+        private void btn_update_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                updateInvoiceByID();
+            }
+            catch (Exception) {
+                MessageBox.Show("Try again!");
+            }
+            
+        }
+
+        private void updateInvoiceByID()
+        {
+
+            int @quantity = 1;
+            double @unitPrice = 0;
+            double @total = 0;
+
+            string @customerName = cbCustomerName.Text.ToString();
+            string @phone = textBox_phonenumber.Text;
+            string @address = textBox_address.Text;
+            string @mail = textBox_email.Text;
+            string @item = cbItem.Text.ToString();
+            string @distric = comboBox_district.Text.ToString();
+            @quantity = Convert.ToInt32(nudQuantity.Value);
+            //@unitPrice = double.Parse(textBox_unitprice.Text);
+
+            @total = quantity * unitPrice;
+
+
+            con.Open();
+
+            SqlCommand cmdUpdateInvoice = new SqlCommand("EXEC upd_invoice '" + @customerName + "', '" + @phone + "', '" + @address + "', '" + @mail + "', '" + @item + "', '" + @distric + "', '" + @quantity + "', '" + @unitPrice + "', '" + @total + "'", con);
+            cmdUpdateInvoice.ExecuteNonQuery();
+            MessageBox.Show("1 record successfully updated!");
+            con.Close();
+
+            loadGridToData();
         }
     }
 }

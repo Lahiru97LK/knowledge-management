@@ -74,7 +74,7 @@ namespace KM
             // pictureBox1
             // 
             this.pictureBox1.ErrorImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.ErrorImage")));
-            this.pictureBox1.Image = global::KM.Properties.Resources.dashboard_logo;
+            //this.pictureBox1.Image = global::KM.Properties.Resources.dashboard_logo;
             this.pictureBox1.Location = new System.Drawing.Point(54, 25);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(150, 156);

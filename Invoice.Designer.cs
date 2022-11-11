@@ -29,7 +29,7 @@ namespace KM
         /// </summary>
         private void InitializeComponent()
         {
-            this.btn_sendinvoice = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Invoice));
             this.btn_saveinvocie = new System.Windows.Forms.Button();
             this.btn_printinvoice = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
@@ -38,7 +38,7 @@ namespace KM
             this.nud_Quantity = new System.Windows.Forms.NumericUpDown();
             this.comboBox_customername = new System.Windows.Forms.ComboBox();
             this.textBox_invoiceid = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
+            this.lblInvoiceNumber = new System.Windows.Forms.Label();
             this.textBox_total = new System.Windows.Forms.TextBox();
             this.textBox_unitprice = new System.Windows.Forms.TextBox();
             this.comboBox_item = new System.Windows.Forms.ComboBox();
@@ -57,21 +57,9 @@ namespace KM
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.btn_sendinvoice = new System.Windows.Forms.Button();
             this.tabPage2 = new System.Windows.Forms.TabPage();
-            this.tbInvoiceNumber = new System.Windows.Forms.TextBox();
-            this.btn_update = new System.Windows.Forms.Button();
-            this.btn_delete = new System.Windows.Forms.Button();
-            this.btn_search = new System.Windows.Forms.Button();
-            this.label13 = new System.Windows.Forms.Label();
-            this.dgv_Invoice = new System.Windows.Forms.DataGridView();
-            this.cbCustomerName = new System.Windows.Forms.ComboBox();
-            this.tbEmail = new System.Windows.Forms.TextBox();
-            this.tbPhone = new System.Windows.Forms.TextBox();
-            this.tbAddress = new System.Windows.Forms.TextBox();
-            this.label14 = new System.Windows.Forms.Label();
-            this.label16 = new System.Windows.Forms.Label();
-            this.label17 = new System.Windows.Forms.Label();
-            this.label18 = new System.Windows.Forms.Label();
+            this.btnReset = new System.Windows.Forms.Button();
             this.btnCalculate = new System.Windows.Forms.Button();
             this.nudQuantity = new System.Windows.Forms.NumericUpDown();
             this.tbTotal = new System.Windows.Forms.TextBox();
@@ -83,23 +71,29 @@ namespace KM
             this.label22 = new System.Windows.Forms.Label();
             this.cbDistrict = new System.Windows.Forms.ComboBox();
             this.label23 = new System.Windows.Forms.Label();
-            this.btnReset = new System.Windows.Forms.Button();
+            this.cbCustomerName = new System.Windows.Forms.ComboBox();
+            this.tbEmail = new System.Windows.Forms.TextBox();
+            this.tbPhone = new System.Windows.Forms.TextBox();
+            this.tbAddress = new System.Windows.Forms.TextBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.dgv_Invoice = new System.Windows.Forms.DataGridView();
+            this.tbInvoiceNumber = new System.Windows.Forms.TextBox();
+            this.btn_update = new System.Windows.Forms.Button();
+            this.btn_delete = new System.Windows.Forms.Button();
+            this.btn_search = new System.Windows.Forms.Button();
+            this.label13 = new System.Windows.Forms.Label();
+            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
+            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_Quantity)).BeginInit();
             this.tabPage2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Invoice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Invoice)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btn_sendinvoice
-            // 
-            this.btn_sendinvoice.Location = new System.Drawing.Point(782, 566);
-            this.btn_sendinvoice.Name = "btn_sendinvoice";
-            this.btn_sendinvoice.Size = new System.Drawing.Size(292, 45);
-            this.btn_sendinvoice.TabIndex = 0;
-            this.btn_sendinvoice.Text = "Send ";
-            this.btn_sendinvoice.UseVisualStyleBackColor = true;
             // 
             // btn_saveinvocie
             // 
@@ -129,7 +123,7 @@ namespace KM
             this.tabControl1.Location = new System.Drawing.Point(12, 12);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1140, 727);
+            this.tabControl1.Size = new System.Drawing.Size(1140, 760);
             this.tabControl1.TabIndex = 3;
             // 
             // tabPage1
@@ -138,7 +132,7 @@ namespace KM
             this.tabPage1.Controls.Add(this.nud_Quantity);
             this.tabPage1.Controls.Add(this.comboBox_customername);
             this.tabPage1.Controls.Add(this.textBox_invoiceid);
-            this.tabPage1.Controls.Add(this.label15);
+            this.tabPage1.Controls.Add(this.lblInvoiceNumber);
             this.tabPage1.Controls.Add(this.textBox_total);
             this.tabPage1.Controls.Add(this.textBox_unitprice);
             this.tabPage1.Controls.Add(this.comboBox_item);
@@ -163,7 +157,7 @@ namespace KM
             this.tabPage1.Location = new System.Drawing.Point(4, 34);
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage1.Size = new System.Drawing.Size(1132, 689);
+            this.tabPage1.Size = new System.Drawing.Size(1132, 722);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Create Invoice";
             this.tabPage1.UseVisualStyleBackColor = true;
@@ -214,15 +208,16 @@ namespace KM
             this.textBox_invoiceid.ReadOnly = true;
             this.textBox_invoiceid.Size = new System.Drawing.Size(296, 30);
             this.textBox_invoiceid.TabIndex = 23;
+            this.textBox_invoiceid.Visible = false;
             // 
-            // label15
+            // lblInvoiceNumber
             // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(78, 70);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(104, 25);
-            this.label15.TabIndex = 22;
-            this.label15.Text = "Invoice No";
+            this.lblInvoiceNumber.AutoSize = true;
+            this.lblInvoiceNumber.Location = new System.Drawing.Point(78, 70);
+            this.lblInvoiceNumber.Name = "lblInvoiceNumber";
+            this.lblInvoiceNumber.Size = new System.Drawing.Size(104, 25);
+            this.lblInvoiceNumber.TabIndex = 22;
+            this.lblInvoiceNumber.Text = "Invoice No";
             // 
             // textBox_total
             // 
@@ -416,6 +411,15 @@ namespace KM
             this.label1.Size = new System.Drawing.Size(0, 25);
             this.label1.TabIndex = 0;
             // 
+            // btn_sendinvoice
+            // 
+            this.btn_sendinvoice.Location = new System.Drawing.Point(782, 566);
+            this.btn_sendinvoice.Name = "btn_sendinvoice";
+            this.btn_sendinvoice.Size = new System.Drawing.Size(292, 45);
+            this.btn_sendinvoice.TabIndex = 0;
+            this.btn_sendinvoice.Text = "Send ";
+            this.btn_sendinvoice.UseVisualStyleBackColor = true;
+            // 
             // tabPage2
             // 
             this.tabPage2.Controls.Add(this.btnReset);
@@ -447,152 +451,36 @@ namespace KM
             this.tabPage2.Location = new System.Drawing.Point(4, 34);
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
-            this.tabPage2.Size = new System.Drawing.Size(1132, 689);
+            this.tabPage2.Size = new System.Drawing.Size(1132, 722);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Modify Invoice";
             this.tabPage2.UseVisualStyleBackColor = true;
             this.tabPage2.Click += new System.EventHandler(this.tabPage2_Click);
             // 
-            // tbInvoiceNumber
+            // btnReset
             // 
-            this.tbInvoiceNumber.Location = new System.Drawing.Point(163, 53);
-            this.tbInvoiceNumber.Name = "tbInvoiceNumber";
-            this.tbInvoiceNumber.Size = new System.Drawing.Size(164, 30);
-            this.tbInvoiceNumber.TabIndex = 5;
-            this.tbInvoiceNumber.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbInvoiceNumber_KeyUp);
-            // 
-            // btn_update
-            // 
-            this.btn_update.Location = new System.Drawing.Point(506, 50);
-            this.btn_update.Name = "btn_update";
-            this.btn_update.Size = new System.Drawing.Size(116, 36);
-            this.btn_update.TabIndex = 4;
-            this.btn_update.Text = "Update";
-            this.btn_update.UseVisualStyleBackColor = true;
-            // 
-            // btn_delete
-            // 
-            this.btn_delete.Location = new System.Drawing.Point(641, 50);
-            this.btn_delete.Name = "btn_delete";
-            this.btn_delete.Size = new System.Drawing.Size(116, 36);
-            this.btn_delete.TabIndex = 3;
-            this.btn_delete.Text = "Delete";
-            this.btn_delete.UseVisualStyleBackColor = true;
-            // 
-            // btn_search
-            // 
-            this.btn_search.Location = new System.Drawing.Point(370, 50);
-            this.btn_search.Name = "btn_search";
-            this.btn_search.Size = new System.Drawing.Size(116, 36);
-            this.btn_search.TabIndex = 2;
-            this.btn_search.Text = "Search";
-            this.btn_search.UseVisualStyleBackColor = true;
-            this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(39, 58);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(104, 25);
-            this.label13.TabIndex = 0;
-            this.label13.Text = "Invoice No";
-            // 
-            // dgv_Invoice
-            // 
-            this.dgv_Invoice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgv_Invoice.Location = new System.Drawing.Point(44, 113);
-            this.dgv_Invoice.Name = "dgv_Invoice";
-            this.dgv_Invoice.ReadOnly = true;
-            this.dgv_Invoice.RowHeadersWidth = 51;
-            this.dgv_Invoice.RowTemplate.Height = 24;
-            this.dgv_Invoice.Size = new System.Drawing.Size(1061, 258);
-            this.dgv_Invoice.TabIndex = 6;
-            this.dgv_Invoice.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Invoice_CellClick);
-            // 
-            // cbCustomerName
-            // 
-            this.cbCustomerName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbCustomerName.FormattingEnabled = true;
-            this.cbCustomerName.Items.AddRange(new object[] {
-            "Lahiru kalutotage",
-            "UI Sandamali",
-            "Gayathri vidarshana",
-            "Anjaani wilmalasooriya"});
-            this.cbCustomerName.Location = new System.Drawing.Point(223, 405);
-            this.cbCustomerName.Name = "cbCustomerName";
-            this.cbCustomerName.Size = new System.Drawing.Size(296, 33);
-            this.cbCustomerName.TabIndex = 34;
-            // 
-            // tbEmail
-            // 
-            this.tbEmail.Location = new System.Drawing.Point(223, 575);
-            this.tbEmail.Name = "tbEmail";
-            this.tbEmail.Size = new System.Drawing.Size(296, 30);
-            this.tbEmail.TabIndex = 31;
-            // 
-            // tbPhone
-            // 
-            this.tbPhone.Location = new System.Drawing.Point(223, 463);
-            this.tbPhone.Name = "tbPhone";
-            this.tbPhone.Size = new System.Drawing.Size(296, 30);
-            this.tbPhone.TabIndex = 30;
-            // 
-            // tbAddress
-            // 
-            this.tbAddress.Location = new System.Drawing.Point(223, 519);
-            this.tbAddress.Name = "tbAddress";
-            this.tbAddress.Size = new System.Drawing.Size(296, 30);
-            this.tbAddress.TabIndex = 29;
-            // 
-            // label14
-            // 
-            this.label14.AutoSize = true;
-            this.label14.Location = new System.Drawing.Point(135, 580);
-            this.label14.Name = "label14";
-            this.label14.Size = new System.Drawing.Size(60, 25);
-            this.label14.TabIndex = 28;
-            this.label14.Text = "Email";
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(52, 468);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(143, 25);
-            this.label16.TabIndex = 27;
-            this.label16.Text = "Phone Number";
-            // 
-            // label17
-            // 
-            this.label17.AutoSize = true;
-            this.label17.Location = new System.Drawing.Point(110, 524);
-            this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(85, 25);
-            this.label17.TabIndex = 26;
-            this.label17.Text = "Address";
-            // 
-            // label18
-            // 
-            this.label18.AutoSize = true;
-            this.label18.Location = new System.Drawing.Point(41, 413);
-            this.label18.Name = "label18";
-            this.label18.Size = new System.Drawing.Size(154, 25);
-            this.label18.TabIndex = 25;
-            this.label18.Text = "Customer Name";
+            this.btnReset.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReset.Location = new System.Drawing.Point(953, 47);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(152, 36);
+            this.btnReset.TabIndex = 46;
+            this.btnReset.Text = "↩️   RESET";
+            this.btnReset.UseVisualStyleBackColor = true;
+            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
             // btnCalculate
             // 
-            this.btnCalculate.Location = new System.Drawing.Point(989, 621);
+            this.btnCalculate.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCalculate.Location = new System.Drawing.Point(950, 617);
             this.btnCalculate.Name = "btnCalculate";
-            this.btnCalculate.Size = new System.Drawing.Size(116, 38);
+            this.btnCalculate.Size = new System.Drawing.Size(155, 38);
             this.btnCalculate.TabIndex = 45;
-            this.btnCalculate.Text = "calculate";
+            this.btnCalculate.Text = "🧮 CALCULATE";
             this.btnCalculate.UseVisualStyleBackColor = true;
             // 
             // nudQuantity
             // 
-            this.nudQuantity.Location = new System.Drawing.Point(675, 527);
+            this.nudQuantity.Location = new System.Drawing.Point(632, 527);
             this.nudQuantity.Name = "nudQuantity";
             this.nudQuantity.Size = new System.Drawing.Size(296, 30);
             this.nudQuantity.TabIndex = 44;
@@ -605,26 +493,25 @@ namespace KM
             // tbTotal
             // 
             this.tbTotal.Enabled = false;
-            this.tbTotal.Location = new System.Drawing.Point(675, 625);
+            this.tbTotal.Location = new System.Drawing.Point(632, 625);
             this.tbTotal.Name = "tbTotal";
             this.tbTotal.Size = new System.Drawing.Size(296, 30);
             this.tbTotal.TabIndex = 43;
             // 
             // tbUnitPrice
             // 
-            this.tbUnitPrice.Location = new System.Drawing.Point(675, 574);
+            this.tbUnitPrice.Location = new System.Drawing.Point(632, 574);
             this.tbUnitPrice.Name = "tbUnitPrice";
             this.tbUnitPrice.Size = new System.Drawing.Size(296, 30);
             this.tbUnitPrice.TabIndex = 42;
             // 
             // cbItem
             // 
-            this.cbItem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbItem.FormattingEnabled = true;
             this.cbItem.Items.AddRange(new object[] {
             "Printer",
             "Monitor"});
-            this.cbItem.Location = new System.Drawing.Point(675, 405);
+            this.cbItem.Location = new System.Drawing.Point(632, 405);
             this.cbItem.Name = "cbItem";
             this.cbItem.Size = new System.Drawing.Size(296, 33);
             this.cbItem.TabIndex = 41;
@@ -632,7 +519,7 @@ namespace KM
             // label19
             // 
             this.label19.AutoSize = true;
-            this.label19.Location = new System.Drawing.Point(591, 630);
+            this.label19.Location = new System.Drawing.Point(558, 630);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(56, 25);
             this.label19.TabIndex = 40;
@@ -641,7 +528,7 @@ namespace KM
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(552, 579);
+            this.label20.Location = new System.Drawing.Point(519, 579);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(95, 25);
             this.label20.TabIndex = 39;
@@ -650,7 +537,7 @@ namespace KM
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(562, 525);
+            this.label21.Location = new System.Drawing.Point(529, 525);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(85, 25);
             this.label21.TabIndex = 38;
@@ -659,7 +546,7 @@ namespace KM
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(598, 413);
+            this.label22.Location = new System.Drawing.Point(565, 413);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(49, 25);
             this.label22.TabIndex = 37;
@@ -667,7 +554,6 @@ namespace KM
             // 
             // cbDistrict
             // 
-            this.cbDistrict.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbDistrict.FormattingEnabled = true;
             this.cbDistrict.Items.AddRange(new object[] {
             "Colombo",
@@ -695,7 +581,7 @@ namespace KM
             "Moneragala",
             "Ratnapura",
             "Kegalle"});
-            this.cbDistrict.Location = new System.Drawing.Point(675, 466);
+            this.cbDistrict.Location = new System.Drawing.Point(632, 466);
             this.cbDistrict.Name = "cbDistrict";
             this.cbDistrict.Size = new System.Drawing.Size(296, 33);
             this.cbDistrict.TabIndex = 36;
@@ -703,21 +589,159 @@ namespace KM
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(577, 474);
+            this.label23.Location = new System.Drawing.Point(544, 474);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(70, 25);
             this.label23.TabIndex = 35;
             this.label23.Text = "District";
             // 
-            // btnReset
+            // cbCustomerName
             // 
-            this.btnReset.Location = new System.Drawing.Point(998, 47);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(107, 36);
-            this.btnReset.TabIndex = 46;
-            this.btnReset.Text = "RESET";
-            this.btnReset.UseVisualStyleBackColor = true;
-            this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
+            this.cbCustomerName.FormattingEnabled = true;
+            this.cbCustomerName.Items.AddRange(new object[] {
+            "Lahiru kalutotage",
+            "UI Sandamali",
+            "Gayathri vidarshana",
+            "Anjaani wilmalasooriya"});
+            this.cbCustomerName.Location = new System.Drawing.Point(192, 405);
+            this.cbCustomerName.Name = "cbCustomerName";
+            this.cbCustomerName.Size = new System.Drawing.Size(296, 33);
+            this.cbCustomerName.TabIndex = 34;
+            // 
+            // tbEmail
+            // 
+            this.tbEmail.Location = new System.Drawing.Point(192, 575);
+            this.tbEmail.Name = "tbEmail";
+            this.tbEmail.Size = new System.Drawing.Size(296, 30);
+            this.tbEmail.TabIndex = 31;
+            // 
+            // tbPhone
+            // 
+            this.tbPhone.Location = new System.Drawing.Point(192, 463);
+            this.tbPhone.Name = "tbPhone";
+            this.tbPhone.Size = new System.Drawing.Size(296, 30);
+            this.tbPhone.TabIndex = 30;
+            // 
+            // tbAddress
+            // 
+            this.tbAddress.Location = new System.Drawing.Point(192, 519);
+            this.tbAddress.Name = "tbAddress";
+            this.tbAddress.Size = new System.Drawing.Size(296, 30);
+            this.tbAddress.TabIndex = 29;
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(119, 580);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(60, 25);
+            this.label14.TabIndex = 28;
+            this.label14.Text = "Email";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(36, 468);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(143, 25);
+            this.label16.TabIndex = 27;
+            this.label16.Text = "Phone Number";
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.Location = new System.Drawing.Point(94, 524);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(85, 25);
+            this.label17.TabIndex = 26;
+            this.label17.Text = "Address";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.Location = new System.Drawing.Point(25, 413);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(154, 25);
+            this.label18.TabIndex = 25;
+            this.label18.Text = "Customer Name";
+            // 
+            // dgv_Invoice
+            // 
+            this.dgv_Invoice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgv_Invoice.Location = new System.Drawing.Point(44, 113);
+            this.dgv_Invoice.Name = "dgv_Invoice";
+            this.dgv_Invoice.ReadOnly = true;
+            this.dgv_Invoice.RowHeadersWidth = 51;
+            this.dgv_Invoice.RowTemplate.Height = 24;
+            this.dgv_Invoice.Size = new System.Drawing.Size(1061, 258);
+            this.dgv_Invoice.TabIndex = 6;
+            this.dgv_Invoice.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_Invoice_CellClick);
+            // 
+            // tbInvoiceNumber
+            // 
+            this.tbInvoiceNumber.Location = new System.Drawing.Point(163, 53);
+            this.tbInvoiceNumber.Name = "tbInvoiceNumber";
+            this.tbInvoiceNumber.Size = new System.Drawing.Size(164, 30);
+            this.tbInvoiceNumber.TabIndex = 5;
+            this.tbInvoiceNumber.TextChanged += new System.EventHandler(this.tbInvoiceNumber_TextChanged);
+            this.tbInvoiceNumber.KeyUp += new System.Windows.Forms.KeyEventHandler(this.tbInvoiceNumber_KeyUp);
+            // 
+            // btn_update
+            // 
+            this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_update.Location = new System.Drawing.Point(660, 680);
+            this.btn_update.Name = "btn_update";
+            this.btn_update.Size = new System.Drawing.Size(116, 36);
+            this.btn_update.TabIndex = 4;
+            this.btn_update.Text = "Update";
+            this.btn_update.UseVisualStyleBackColor = true;
+            this.btn_update.Click += new System.EventHandler(this.btn_update_Click);
+            // 
+            // btn_delete
+            // 
+            this.btn_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_delete.Location = new System.Drawing.Point(804, 680);
+            this.btn_delete.Name = "btn_delete";
+            this.btn_delete.Size = new System.Drawing.Size(152, 36);
+            this.btn_delete.TabIndex = 3;
+            this.btn_delete.Text = "❌ DELETE";
+            this.btn_delete.UseVisualStyleBackColor = true;
+            this.btn_delete.Click += new System.EventHandler(this.btn_delete_Click);
+            // 
+            // btn_search
+            // 
+            this.btn_search.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_search.Location = new System.Drawing.Point(360, 50);
+            this.btn_search.Name = "btn_search";
+            this.btn_search.Size = new System.Drawing.Size(172, 36);
+            this.btn_search.TabIndex = 2;
+            this.btn_search.Text = "🔍  Search";
+            this.btn_search.UseVisualStyleBackColor = true;
+            this.btn_search.Click += new System.EventHandler(this.btn_search_Click);
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(39, 58);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(104, 25);
+            this.label13.TabIndex = 0;
+            this.label13.Text = "Invoice No";
+            // 
+            // printDocument1
+            // 
+            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            // 
+            // printPreviewDialog1
+            // 
+            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
+            this.printPreviewDialog1.Document = this.printDocument1;
+            this.printPreviewDialog1.Enabled = true;
+            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
+            this.printPreviewDialog1.Name = "printPreviewDialog1";
+            this.printPreviewDialog1.Visible = false;
             // 
             // Invoice
             // 
@@ -735,8 +759,8 @@ namespace KM
             ((System.ComponentModel.ISupportInitialize)(this.nud_Quantity)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgv_Invoice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.nudQuantity)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgv_Invoice)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -768,7 +792,7 @@ namespace KM
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox textBox_invoiceid;
-        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label lblInvoiceNumber;
         private System.Windows.Forms.TextBox tbInvoiceNumber;
         private System.Windows.Forms.Button btn_update;
         private System.Windows.Forms.Button btn_delete;
@@ -798,5 +822,7 @@ namespace KM
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button btnReset;
+        private System.Drawing.Printing.PrintDocument printDocument1;
+        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
     }
 }
