@@ -269,7 +269,7 @@ namespace KM
                 empDetailsUpdate();
             } catch(Exception)
             {
-                throw;
+                MessageBox.Show("Try again...");
             }
             
         }

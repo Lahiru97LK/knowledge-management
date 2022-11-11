@@ -32,3 +32,7 @@ F:\KM\GIT\knowledge-management\obj\Debug\KM.NewDashboard.resources
 F:\KM\GIT\knowledge-management\obj\Debug\KM.EmployeeAttendance.resources
 F:\KM\GIT\knowledge-management\obj\Debug\KM.Dashboard_Initial.resources
 F:\KM\GIT\knowledge-management\obj\Debug\KM.test.resources
+F:\KM\GIT\knowledge-management\bin\Debug\BouncyCastle.Crypto.dll
+F:\KM\GIT\knowledge-management\bin\Debug\itextsharp.dll
+F:\KM\GIT\knowledge-management\bin\Debug\itextsharp.xml
+F:\KM\GIT\knowledge-management\obj\Debug\KM.csproj.CopyComplete
