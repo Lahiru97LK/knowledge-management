@@ -85,8 +85,11 @@ namespace KM
             this.btn_delete = new System.Windows.Forms.Button();
             this.btn_search = new System.Windows.Forms.Button();
             this.label13 = new System.Windows.Forms.Label();
-            this.printDocument1 = new System.Drawing.Printing.PrintDocument();
-            this.printPreviewDialog1 = new System.Windows.Forms.PrintPreviewDialog();
+            this.MprintDocument = new System.Drawing.Printing.PrintDocument();
+            this.MprintPreviewDialog = new System.Windows.Forms.PrintPreviewDialog();
+            this.tbInvoiceNo = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnClear = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nud_Quantity)).BeginInit();
@@ -97,21 +100,21 @@ namespace KM
             // 
             // btn_saveinvocie
             // 
-            this.btn_saveinvocie.Location = new System.Drawing.Point(782, 487);
+            this.btn_saveinvocie.Location = new System.Drawing.Point(782, 552);
             this.btn_saveinvocie.Name = "btn_saveinvocie";
             this.btn_saveinvocie.Size = new System.Drawing.Size(292, 45);
             this.btn_saveinvocie.TabIndex = 1;
-            this.btn_saveinvocie.Text = "Save as PDF";
+            this.btn_saveinvocie.Text = "SAVE AS PDF";
             this.btn_saveinvocie.UseVisualStyleBackColor = true;
             this.btn_saveinvocie.Click += new System.EventHandler(this.btn_saveinvocie_Click);
             // 
             // btn_printinvoice
             // 
-            this.btn_printinvoice.Location = new System.Drawing.Point(782, 404);
+            this.btn_printinvoice.Location = new System.Drawing.Point(782, 488);
             this.btn_printinvoice.Name = "btn_printinvoice";
             this.btn_printinvoice.Size = new System.Drawing.Size(292, 45);
             this.btn_printinvoice.TabIndex = 2;
-            this.btn_printinvoice.Text = "Print";
+            this.btn_printinvoice.Text = "PRINT";
             this.btn_printinvoice.UseVisualStyleBackColor = true;
             this.btn_printinvoice.Click += new System.EventHandler(this.btn_printinvoice_Click);
             // 
@@ -128,6 +131,7 @@ namespace KM
             // 
             // tabPage1
             // 
+            this.tabPage1.Controls.Add(this.btnClear);
             this.tabPage1.Controls.Add(this.button1);
             this.tabPage1.Controls.Add(this.nud_Quantity);
             this.tabPage1.Controls.Add(this.comboBox_customername);
@@ -193,7 +197,10 @@ namespace KM
             "Lahiru kalutotage",
             "UI Sandamali",
             "Gayathri vidarshana",
-            "Anjaani wilmalasooriya"});
+            "Anjaani wilmalasooriya",
+            "Suneetha m",
+            "Krishani anuththara",
+            "rukshila wettamuni"});
             this.comboBox_customername.Location = new System.Drawing.Point(210, 120);
             this.comboBox_customername.Name = "comboBox_customername";
             this.comboBox_customername.Size = new System.Drawing.Size(296, 33);
@@ -241,8 +248,12 @@ namespace KM
             // 
             this.comboBox_item.FormattingEnabled = true;
             this.comboBox_item.Items.AddRange(new object[] {
-            "Printer",
-            "Monitor"});
+            "Bag 5\" x 5\" black",
+            "Bag 6\" x 6\" black",
+            "Bag 10\" x 12\" black",
+            "Bag 12\" x 14\" black",
+            "Bag 14\" x 14\" black",
+            "Bag 16\" x 16\" black"});
             this.comboBox_item.Location = new System.Drawing.Point(210, 343);
             this.comboBox_item.Name = "comboBox_item";
             this.comboBox_item.Size = new System.Drawing.Size(296, 33);
@@ -410,15 +421,18 @@ namespace KM
             // 
             // btn_sendinvoice
             // 
-            this.btn_sendinvoice.Location = new System.Drawing.Point(782, 566);
+            this.btn_sendinvoice.Location = new System.Drawing.Point(210, 648);
             this.btn_sendinvoice.Name = "btn_sendinvoice";
             this.btn_sendinvoice.Size = new System.Drawing.Size(292, 45);
             this.btn_sendinvoice.TabIndex = 0;
             this.btn_sendinvoice.Text = "Send ";
             this.btn_sendinvoice.UseVisualStyleBackColor = true;
+            this.btn_sendinvoice.Visible = false;
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.label4);
+            this.tabPage2.Controls.Add(this.tbInvoiceNo);
             this.tabPage2.Controls.Add(this.btnReset);
             this.tabPage2.Controls.Add(this.btnCalculate);
             this.tabPage2.Controls.Add(this.nudQuantity);
@@ -474,6 +488,7 @@ namespace KM
             this.btnCalculate.TabIndex = 45;
             this.btnCalculate.Text = "🧮 CALCULATE";
             this.btnCalculate.UseVisualStyleBackColor = true;
+            this.btnCalculate.Click += new System.EventHandler(this.btnCalculate_Click);
             // 
             // nudQuantity
             // 
@@ -492,6 +507,7 @@ namespace KM
             this.tbTotal.Enabled = false;
             this.tbTotal.Location = new System.Drawing.Point(632, 625);
             this.tbTotal.Name = "tbTotal";
+            this.tbTotal.ReadOnly = true;
             this.tbTotal.Size = new System.Drawing.Size(296, 30);
             this.tbTotal.TabIndex = 43;
             // 
@@ -506,8 +522,12 @@ namespace KM
             // 
             this.cbItem.FormattingEnabled = true;
             this.cbItem.Items.AddRange(new object[] {
-            "Printer",
-            "Monitor"});
+            "Bag 5\" x 5\" black",
+            "Bag 6\" x 6\" black",
+            "Bag 10\" x 12\" black",
+            "Bag 12\" x 14\" black",
+            "Bag 14\" x 14\" black",
+            "Bag 16\" x 16\" black"});
             this.cbItem.Location = new System.Drawing.Point(632, 405);
             this.cbItem.Name = "cbItem";
             this.cbItem.Size = new System.Drawing.Size(296, 33);
@@ -599,7 +619,10 @@ namespace KM
             "Lahiru kalutotage",
             "UI Sandamali",
             "Gayathri vidarshana",
-            "Anjaani wilmalasooriya"});
+            "Anjaani wilmalasooriya",
+            "Suneetha m",
+            "Krishani anuththara",
+            "rukshila wettamuni"});
             this.cbCustomerName.Location = new System.Drawing.Point(192, 405);
             this.cbCustomerName.Name = "cbCustomerName";
             this.cbCustomerName.Size = new System.Drawing.Size(296, 33);
@@ -618,6 +641,7 @@ namespace KM
             this.tbPhone.Name = "tbPhone";
             this.tbPhone.Size = new System.Drawing.Size(296, 30);
             this.tbPhone.TabIndex = 30;
+            this.tbPhone.TextChanged += new System.EventHandler(this.tbPhone_TextChanged);
             // 
             // tbAddress
             // 
@@ -686,7 +710,7 @@ namespace KM
             // btn_update
             // 
             this.btn_update.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_update.Location = new System.Drawing.Point(660, 680);
+            this.btn_update.Location = new System.Drawing.Point(632, 679);
             this.btn_update.Name = "btn_update";
             this.btn_update.Size = new System.Drawing.Size(116, 36);
             this.btn_update.TabIndex = 4;
@@ -697,7 +721,7 @@ namespace KM
             // btn_delete
             // 
             this.btn_delete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_delete.Location = new System.Drawing.Point(804, 680);
+            this.btn_delete.Location = new System.Drawing.Point(776, 679);
             this.btn_delete.Name = "btn_delete";
             this.btn_delete.Size = new System.Drawing.Size(152, 36);
             this.btn_delete.TabIndex = 3;
@@ -725,20 +749,48 @@ namespace KM
             this.label13.TabIndex = 0;
             this.label13.Text = "Invoice No";
             // 
-            // printDocument1
+            // MprintDocument
             // 
-            this.printDocument1.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
+            this.MprintDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument1_PrintPage);
             // 
-            // printPreviewDialog1
+            // MprintPreviewDialog
             // 
-            this.printPreviewDialog1.AutoScrollMargin = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.AutoScrollMinSize = new System.Drawing.Size(0, 0);
-            this.printPreviewDialog1.ClientSize = new System.Drawing.Size(400, 300);
-            this.printPreviewDialog1.Document = this.printDocument1;
-            this.printPreviewDialog1.Enabled = true;
-            this.printPreviewDialog1.Icon = ((System.Drawing.Icon)(resources.GetObject("printPreviewDialog1.Icon")));
-            this.printPreviewDialog1.Name = "printPreviewDialog1";
-            this.printPreviewDialog1.Visible = false;
+            this.MprintPreviewDialog.AutoScrollMargin = new System.Drawing.Size(0, 0);
+            this.MprintPreviewDialog.AutoScrollMinSize = new System.Drawing.Size(0, 0);
+            this.MprintPreviewDialog.ClientSize = new System.Drawing.Size(400, 300);
+            this.MprintPreviewDialog.Document = this.MprintDocument;
+            this.MprintPreviewDialog.Enabled = true;
+            this.MprintPreviewDialog.Icon = ((System.Drawing.Icon)(resources.GetObject("MprintPreviewDialog.Icon")));
+            this.MprintPreviewDialog.Name = "printPreviewDialog1";
+            this.MprintPreviewDialog.Visible = false;
+            // 
+            // tbInvoiceNo
+            // 
+            this.tbInvoiceNo.Location = new System.Drawing.Point(192, 632);
+            this.tbInvoiceNo.Name = "tbInvoiceNo";
+            this.tbInvoiceNo.Size = new System.Drawing.Size(296, 30);
+            this.tbInvoiceNo.TabIndex = 47;
+            this.tbInvoiceNo.Visible = false;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(76, 637);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(103, 25);
+            this.label4.TabIndex = 48;
+            this.label4.Text = "invoice No";
+            this.label4.Visible = false;
+            // 
+            // btnClear
+            // 
+            this.btnClear.Location = new System.Drawing.Point(782, 625);
+            this.btnClear.Name = "btnClear";
+            this.btnClear.Size = new System.Drawing.Size(292, 43);
+            this.btnClear.TabIndex = 27;
+            this.btnClear.Text = "CLEAR";
+            this.btnClear.UseVisualStyleBackColor = true;
+            this.btnClear.Click += new System.EventHandler(this.btnClear_Click);
             // 
             // Invoice
             // 
@@ -819,7 +871,10 @@ namespace KM
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Button btnReset;
-        private System.Drawing.Printing.PrintDocument printDocument1;
-        private System.Windows.Forms.PrintPreviewDialog printPreviewDialog1;
+        private System.Drawing.Printing.PrintDocument MprintDocument;
+        private System.Windows.Forms.PrintPreviewDialog MprintPreviewDialog;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox tbInvoiceNo;
+        private System.Windows.Forms.Button btnClear;
     }
 }

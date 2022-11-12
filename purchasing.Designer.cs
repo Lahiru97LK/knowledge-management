@@ -51,10 +51,14 @@ namespace KM
             this.btnbrowse = new System.Windows.Forms.Button();
             this.textBox_filePath = new System.Windows.Forms.TextBox();
             this.btn_upload = new System.Windows.Forms.Button();
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.dataGridView2 = new System.Windows.Forms.DataGridView();
+            this.btnload = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.tabPage2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).BeginInit();
             this.SuspendLayout();
             // 
             // tabControl1
@@ -257,6 +261,8 @@ namespace KM
             // 
             // tabPage2
             // 
+            this.tabPage2.Controls.Add(this.btnload);
+            this.tabPage2.Controls.Add(this.dataGridView2);
             this.tabPage2.Controls.Add(this.btnbrowse);
             this.tabPage2.Controls.Add(this.textBox_filePath);
             this.tabPage2.Controls.Add(this.btn_upload);
@@ -270,12 +276,13 @@ namespace KM
             // 
             // btnbrowse
             // 
-            this.btnbrowse.Location = new System.Drawing.Point(56, 138);
+            this.btnbrowse.Location = new System.Drawing.Point(40, 43);
             this.btnbrowse.Name = "btnbrowse";
             this.btnbrowse.Size = new System.Drawing.Size(117, 38);
             this.btnbrowse.TabIndex = 31;
             this.btnbrowse.Text = "Browse";
             this.btnbrowse.UseVisualStyleBackColor = true;
+            this.btnbrowse.Click += new System.EventHandler(this.btnbrowse_Click);
             // 
             // textBox_filePath
             // 
@@ -287,12 +294,38 @@ namespace KM
             // btn_upload
             // 
             this.btn_upload.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_upload.Location = new System.Drawing.Point(37, 45);
+            this.btn_upload.Location = new System.Drawing.Point(463, 130);
             this.btn_upload.Name = "btn_upload";
             this.btn_upload.Size = new System.Drawing.Size(136, 35);
             this.btn_upload.TabIndex = 1;
             this.btn_upload.Text = "Upload";
             this.btn_upload.UseVisualStyleBackColor = true;
+            this.btn_upload.Click += new System.EventHandler(this.btn_upload_Click_1);
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.FileName = "openFileDialog1";
+            // 
+            // dataGridView2
+            // 
+            this.dataGridView2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridView2.Location = new System.Drawing.Point(95, 236);
+            this.dataGridView2.Name = "dataGridView2";
+            this.dataGridView2.RowHeadersWidth = 51;
+            this.dataGridView2.RowTemplate.Height = 24;
+            this.dataGridView2.Size = new System.Drawing.Size(434, 150);
+            this.dataGridView2.TabIndex = 32;
+            this.dataGridView2.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView2_CellContentClick);
+            // 
+            // btnload
+            // 
+            this.btnload.Location = new System.Drawing.Point(629, 130);
+            this.btnload.Name = "btnload";
+            this.btnload.Size = new System.Drawing.Size(136, 35);
+            this.btnload.TabIndex = 33;
+            this.btnload.Text = "Load";
+            this.btnload.UseVisualStyleBackColor = true;
+            this.btnload.Click += new System.EventHandler(this.btnload_Click);
             // 
             // purchasing
             // 
@@ -310,6 +343,7 @@ namespace KM
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.tabPage2.ResumeLayout(false);
             this.tabPage2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridView2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -337,5 +371,8 @@ namespace KM
         private System.Windows.Forms.Button btnbrowse;
         private System.Windows.Forms.TextBox textBox_filePath;
         private System.Windows.Forms.Button btn_upload;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.DataGridView dataGridView2;
+        private System.Windows.Forms.Button btnload;
     }
 }

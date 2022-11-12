@@ -80,23 +80,8 @@ namespace KM
         Bitmap bmp;
         private void btn_printinvoice_Click(object sender, EventArgs e)
         {
-            //try
-            //{
-            //    printInsertedDATA();
-            //    LoadGrid();
-            //}
-            //catch(Exception)
-            //{
-            //    MessageBox.Show("Try again");
-            //}
-
-            Graphics g = this.CreateGraphics();
-            bmp = new Bitmap(this.Size.Width, this.Size.Height, g);
-            Graphics mg = Graphics.FromImage(bmp);
-            mg.CopyFromScreen(this.Location.X, this.Location.Y, 0, 0, this.Size);
-            printPreviewDialog1.ShowDialog();
-            
-
+            MprintPreviewDialog.Document = MprintDocument;
+            MprintPreviewDialog.ShowDialog();
         }
 
         private void LoadGrid()
@@ -196,6 +181,8 @@ namespace KM
                 MessageBox.Show("Please enter only numbers.");
                 textBox_phonenumber.Text = textBox_phonenumber.Text.Remove(textBox_phonenumber.Text.Length - 1);
             }
+
+            textBox_phonenumber.MaxLength = 10;
         }
 
         private void textBox_phonenumber_KeyUp(object sender, KeyEventArgs e)
@@ -203,10 +190,10 @@ namespace KM
             if (textBox_phonenumber.Text.Length != 10)
             {
                 //MessageBox.Show("Enter valid phone number");
-                btn_printinvoice.Enabled = false;
+                btn_saveinvocie.Enabled = false;
             }else
             {
-                btn_printinvoice.Enabled = true;
+                btn_saveinvocie.Enabled = true;
             }
         }
 
@@ -228,22 +215,34 @@ namespace KM
 
         private void calcTotal()
         {
-            int quantity = Convert.ToInt32(nud_Quantity.Value.ToString());
-            float unitPrice = float.Parse(textBox_unitprice.Text);
-            float total;
 
-            if (unitPrice / 1 != unitPrice)
+            try
             {
-                MessageBox.Show("Invalid unit price");
-                btn_printinvoice.Enabled = false;
-            }
-            else {
-                btn_printinvoice.Enabled = true;
-            }
 
-            total = quantity * unitPrice;
+                int quantity = Convert.ToInt32(nud_Quantity.Value.ToString());
 
-            textBox_total.Text = total.ToString();
+                float unitPrice = float.Parse(textBox_unitprice.Text);
+
+                float total;
+
+                if (unitPrice / 1 != unitPrice)
+                {
+                    MessageBox.Show("Invalid unit price");
+                    btn_printinvoice.Enabled = false;
+                }
+                else
+                {
+                    btn_printinvoice.Enabled = true;
+                }
+
+                total = quantity * unitPrice;
+
+                textBox_total.Text = total.ToString();
+            }
+            catch {
+                MessageBox.Show("Invalid  unit price");
+                textBox_unitprice.Text = string.Empty;
+            }
         }
 
         private void textBox_unitprice_KeyPress(object sender, KeyPressEventArgs e)
@@ -269,7 +268,7 @@ namespace KM
         {
             printInsertedDATA();
             LoadGrid();
-            clearDATA();
+            //clearDATA();
         }
 
         private void clearDATA()
@@ -387,8 +386,9 @@ namespace KM
             {
                 deleteInvoice();
                 loadGridToData();
+                clearINVOICEManageDATA();
             }
-            catch(Exception) {
+            catch (Exception) {
                 MessageBox.Show("Try again...");
             }
         }
@@ -405,7 +405,51 @@ namespace KM
 
         private void printDocument1_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
         {
-            e.Graphics.DrawImage(bmp, 0, 0);
+            //e.Graphics.DrawImage(bmp, 0, 0);
+            int @quantity = 1;
+            double @unitPrice = 0;
+            double @total = 0;
+
+            string @customerName = comboBox_customername.Text.ToString();
+            string @phone = textBox_phonenumber.Text;
+            string @address = textBox_email.Text;
+            string @mail = textBox_email.Text;
+            string @item = comboBox_item.Text.ToString();
+            string @distric = comboBox_district.Text.ToString();
+            @quantity = Convert.ToInt32(nud_Quantity.Value);
+            if (textBox_unitprice.Text.Length > 0)
+            {
+                @unitPrice = double.Parse(textBox_unitprice.Text);
+            }
+            else
+            {
+                @unitPrice = 00.00;
+            }
+            @total = quantity * unitPrice;
+
+            e.Graphics.DrawString("INVOICE REPORT", new System.Drawing.Font("Arial", 18, FontStyle.Regular),Brushes.Black, new Point(300,50));
+            e.Graphics.DrawString("DATE : "+DateTime.Now.ToString(), new System.Drawing.Font("Arial", 10, FontStyle.Regular), Brushes.Black, new Point(50, 80));
+            e.Graphics.DrawString(".......................................................................................................", new System.Drawing.Font("Arial", 18, FontStyle.Regular), Brushes.Black, new Point(50, 85));
+
+
+            e.Graphics.DrawString("\n\nJupiter Packing Suppliers\nAlubogahawatta"
+                                + "\nParagasthota"
+                                + "\nHorana"
+                                + "\nTel - 0777715233"
+                                + "\nEmail - jupiterpacking7@gmail.com\n"
+                                    , new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new Point(500, 100));
+
+
+            e.Graphics.DrawString("\n\n\n\nCUSTOMER NAME : " +@customerName
+                                           +"\nPHONE : " +@phone
+                                           + "\nADDRESS : " + @address
+                                           + "\nEMAIL : " + @mail
+                                           + "\nDISTRICT : " + @distric
+                                           + "\nQUANTITY : " + @quantity
+                                           + "\nUNIT PRICE : " + @unitPrice
+                                           + "\nTOTAL : " + @total
+                                                , new System.Drawing.Font("Arial", 12, FontStyle.Regular), Brushes.Black, new Point(50, 250));
+
         }
 
         private void btn_update_Click(object sender, EventArgs e)
@@ -413,11 +457,26 @@ namespace KM
             try
             {
                 updateInvoiceByID();
+                clearINVOICEManageDATA();
             }
-            catch (Exception) {
+            catch (Exception exc) {
                 MessageBox.Show("Try again!");
             }
             
+        }
+
+        private void clearINVOICEManageDATA()
+        {
+            cbCustomerName.Text = string.Empty;
+            tbPhone.Text = string.Empty;
+            tbAddress.Text = string.Empty;
+            tbEmail.Text = string.Empty;
+            tbInvoiceNo.Text = string.Empty;
+            cbItem.Text = string.Empty;
+            cbDistrict.Text = string.Empty;
+            nudQuantity.Value = 1;
+            tbUnitPrice.Text = string.Empty;
+            tbTotal.Text = string.Empty;
         }
 
         private void updateInvoiceByID()
@@ -428,25 +487,76 @@ namespace KM
             double @total = 0;
 
             string @customerName = cbCustomerName.Text.ToString();
-            string @phone = textBox_phonenumber.Text;
-            string @address = textBox_address.Text;
-            string @mail = textBox_email.Text;
+            int @phone = Convert.ToInt32(tbPhone.Text);
+            string @address = tbAddress.Text;
+            string @mail = tbEmail.Text;
             string @item = cbItem.Text.ToString();
-            string @distric = comboBox_district.Text.ToString();
-            @quantity = Convert.ToInt32(nudQuantity.Value);
-            //@unitPrice = double.Parse(textBox_unitprice.Text);
+            string @distric = cbDistrict.Text.ToString();
+            //@quantity = Convert.ToInt32(nudQuantity.Value);
 
+            @quantity = Convert.ToInt32(nud_Quantity.Value);
+            if (textBox_unitprice.Text.Length > 0)
+            {
+                @unitPrice = double.Parse(textBox_unitprice.Text);
+            }
+            else
+            {
+                @unitPrice = 00.00;
+            }
             @total = quantity * unitPrice;
 
 
             con.Open();
 
-            SqlCommand cmdUpdateInvoice = new SqlCommand("EXEC upd_invoice '" + @customerName + "', '" + @phone + "', '" + @address + "', '" + @mail + "', '" + @item + "', '" + @distric + "', '" + @quantity + "', '" + @unitPrice + "', '" + @total + "'", con);
+            SqlCommand cmdUpdateInvoice = new SqlCommand("EXEC upd_invoice '"+ @INVOICE_NO + "','" + @customerName + "', '" + @phone + "', '" + @address + "', '" + @mail + "', '" + @item + "', '" + @distric + "', '" + @quantity + "', '" + @unitPrice + "', '" + @total + "'", con);
             cmdUpdateInvoice.ExecuteNonQuery();
             MessageBox.Show("1 record successfully updated!");
             con.Close();
 
             loadGridToData();
+        }
+
+        private void btnCalculate_Click(object sender, EventArgs e)
+        {
+            calcTotalPrice();
+        }
+
+        private void calcTotalPrice()
+        {
+            try
+            {
+                int quantity = Convert.ToInt32(nudQuantity.Value.ToString());
+                float unitPrice = float.Parse(tbUnitPrice.Text);
+                float total;
+
+                if (unitPrice / 1 != unitPrice)
+                {
+                    MessageBox.Show("Invalid unit price");
+                    btn_update.Enabled = false;
+                }
+                else
+                {
+                    btn_update.Enabled = true;
+                }
+
+                total = quantity * unitPrice;
+
+                tbTotal.Text = total.ToString();
+            }
+            catch {
+                MessageBox.Show("Invalid unit price. Enter again");
+                tbUnitPrice.Text = string.Empty;
+            }
+        }
+
+        private void tbPhone_TextChanged(object sender, EventArgs e)
+        {
+            tbPhone.MaxLength = 10;
+        }
+
+        private void btnClear_Click(object sender, EventArgs e)
+        {
+            clearDATA();
         }
     }
 }

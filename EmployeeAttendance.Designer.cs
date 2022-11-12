@@ -135,7 +135,7 @@ namespace KM
             // 
             // txtbEmployeeName
             // 
-            this.txtbEmployeeName.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.txtbEmployeeName.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtbEmployeeName.Enabled = false;
             this.txtbEmployeeName.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtbEmployeeName.Location = new System.Drawing.Point(314, 102);
@@ -186,7 +186,7 @@ namespace KM
             // 
             // txtbTotalWorkingHours
             // 
-            this.txtbTotalWorkingHours.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.txtbTotalWorkingHours.BackColor = System.Drawing.SystemColors.ButtonHighlight;
             this.txtbTotalWorkingHours.Enabled = false;
             this.txtbTotalWorkingHours.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtbTotalWorkingHours.Location = new System.Drawing.Point(314, 284);
