@@ -105,6 +105,7 @@ namespace KM
             this.btn_save.TabIndex = 6;
             this.btn_save.Text = "Save ";
             this.btn_save.UseVisualStyleBackColor = true;
+            this.btn_save.Click += new System.EventHandler(this.btn_save_Click);
             // 
             // button3
             // 
@@ -150,6 +151,7 @@ namespace KM
             this.item_comboBox1.Name = "item_comboBox1";
             this.item_comboBox1.Size = new System.Drawing.Size(200, 24);
             this.item_comboBox1.TabIndex = 11;
+            this.item_comboBox1.SelectedIndexChanged += new System.EventHandler(this.item_comboBox1_SelectedIndexChanged);
             // 
             // lbl_search
             // 
@@ -166,6 +168,7 @@ namespace KM
             this.textBox_search.Name = "textBox_search";
             this.textBox_search.Size = new System.Drawing.Size(154, 22);
             this.textBox_search.TabIndex = 13;
+            this.textBox_search.TextChanged += new System.EventHandler(this.textBox_search_TextChanged);
             // 
             // numericUpDown1
             // 

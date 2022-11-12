@@ -192,5 +192,8 @@
   <ItemGroup>
     <Content Include="src\images\save.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Document\" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

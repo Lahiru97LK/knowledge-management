@@ -174,7 +174,13 @@ namespace KM
             string @item = comboBox_item.Text.ToString();
             string @distric = comboBox_district.Text.ToString();
             @quantity = Convert.ToInt32(nud_Quantity.Value);
-            @unitPrice = double.Parse(textBox_unitprice.Text);
+            if (textBox_unitprice.Text.Length > 0)
+            {
+                @unitPrice = double.Parse(textBox_unitprice.Text);
+            }
+            else {
+                @unitPrice = 00.00;
+            }
             @total = quantity * unitPrice;
 
             con.Open();
@@ -263,6 +269,21 @@ namespace KM
         {
             printInsertedDATA();
             LoadGrid();
+            clearDATA();
+        }
+
+        private void clearDATA()
+        {
+            comboBox_customername.Text = string.Empty;
+            textBox_phonenumber.Text = "";
+            textBox_address.Text = "";
+            textBox_email.Text = "";
+            comboBox_item.ResetText();
+            comboBox_district.ResetText();
+            textBox_unitprice.Text = "";
+            nudQuantity.Value = 1;
+
+            textBox_total.Text = "";
         }
 
         private void btn_search_Click(object sender, EventArgs e)

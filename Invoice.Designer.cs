@@ -188,7 +188,6 @@ namespace KM
             // 
             // comboBox_customername
             // 
-            this.comboBox_customername.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_customername.FormattingEnabled = true;
             this.comboBox_customername.Items.AddRange(new object[] {
             "Lahiru kalutotage",
@@ -240,7 +239,6 @@ namespace KM
             // 
             // comboBox_item
             // 
-            this.comboBox_item.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_item.FormattingEnabled = true;
             this.comboBox_item.Items.AddRange(new object[] {
             "Printer",
@@ -306,7 +304,6 @@ namespace KM
             // 
             // comboBox_district
             // 
-            this.comboBox_district.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBox_district.FormattingEnabled = true;
             this.comboBox_district.Items.AddRange(new object[] {
             "Colombo",
